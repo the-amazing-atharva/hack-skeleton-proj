@@ -1,1 +1,1 @@
-# hack-skeleton-proj
+# Skeleton Code for EcoFix
