@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Font awesome for fa icons -->
+    <script src="https://use.fontawesome.com/fe459689b4.js"></script>
+    <!-- Including styles.css file -->
+    <link rel="stylesheet" type="text/css" href="styles2.css" />
+    <title>Image upload and issue reporting</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+      }
+      .container {
+        width: 45%;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      .left-half {
+        border-right: 1px solid #ddd;
+      }
+      .right-half {
+        padding-left: 20px;
+      }
+
+      /* Styles for the left part */
+      .left-half body {
+        margin: 50px;
+      }
+      .file-uploader {
+        /* make it invisible */
+        opacity: 0;
+        /* make it take the full height and width of the parent container */
+        height: 100%;
+        width: 100%;
+        cursor: pointer;
+        /* make it absolute positioned */
+        position: absolute;
+        top: 0%;
+        left: 0%;
+      }
+      .upload-icon {
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        /* initial icon state */
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        color: #ccc;
+        -webkit-text-stroke-width: 2px;
+        -webkit-text-stroke-color: #bbb;
+      }
+      .profile-picture {
+        opacity: 0.75;
+        height: 250px;
+        width: 450px;
+        position: relative;
+        overflow: hidden;
+        /* default image */
+        background: url("https://community.softr.io/uploads/db9110/original/2X/7/74e6e7e382d0ff5d7773ca9a87e6f6f8817a68a6.jpeg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      }
+      /* toggle icon state */
+      .profile-picture:hover .upload-icon {
+        opacity: 1;
+      }
+      #find-me {
+        margin-top: 20px;
+        padding: 5px;
+      }
+
+      /* Styles for the right part */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      h1 {
+        text-align: center;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      label {
+        margin-top: 10px;
+      }
+      input,
+      textarea {
+        padding: 10px;
+        margin-top: 5px;
+      }
+      button {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container left-half">
+      <h1>Upload issue image (with preview)</h1>
+      <div class="profile-picture">
+        <h1 class="upload-icon">
+          <i class="fa fa-plus fa-2x" aria-hidden="true"></i>
+        </h1>
+        <input
+          class="file-uploader"
+          type="file"
+          onchange="upload()"
+          accept="image/*"
+        />
+      </div>
+      <div>
+        <button id="find-me">Find My Location</button>
+        <p id="status"></p>
+        <a id="map-link" target="_blank"></a>
+      </div>
+    </div>
+
+    <div class="container right-half">
+      <h1>Report Local Issues</h1>
+      <form id="issue-form" enctype="multipart/form-data">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea>
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required />
+
+        <!-- <label for="image">Upload Image:</label>
+        <input type="file" id="image" name="image" accept="image/*" required /> -->
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <!-- Including JavaScript files -->
+    <script src="./scripts.js"></script>
+    <script src="./location.js"></script>
+  </body>
+</html>
